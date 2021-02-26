@@ -1,20 +1,24 @@
 <template>
+ <v-app id="inspire">
   
 
-    <v-main>
-      <HelloWorld/>
+    <v-main dark>
+      <newTodo/>
     </v-main>
+ </v-app>
   
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld';
+
+import newTodo from './components/newTodo';
 
 export default {
   name: 'App',
 
   components: {
-    HelloWorld,
+   
+    newTodo
   },
 
   data: () => ({
@@ -22,8 +26,3 @@ export default {
   }),
 };
 </script>
-<style scoped>
-body{
-  color: orangered
-}
-</style>
