@@ -5,7 +5,7 @@
         <v-col
           cols="12"
           sm="6"
-          md="4"
+          md="6"
         >
           <v-text-field
             dense
@@ -18,34 +18,36 @@
        
          
 
-    </v-row> 
+    </v-row>
+    </v-form> 
     <v-row justify="center">
         <v-col md="4" >
-    <v-btn style="margin-left: 2px" outlined color="success" @click="filterTodo = 'active'" >Active</v-btn>
-    <v-btn outlined color="success" @click="filterTodo = 'complete'" >Complete</v-btn>
-    <v-btn outlined color="success" @click="filterTodo = 'allSelect'">All Data</v-btn>
+    <v-btn class="ma-2" outlined color="success" @click="filterTodo = 'active'" >Active</v-btn>
+    <v-btn class="ma-2" outlined color="success" @click="filterTodo = 'complete'" >Complete</v-btn>
+    <v-btn class="ma-2" outlined color="success" @click="filterTodo = 'allSelect'">All Data</v-btn>
         </v-col>
     </v-row>
-    <v-btn color="primary" v-if="!isEditing" @click="submit">Add</v-btn>
-    <v-btn v-else @click="updateData">Update</v-btn>
-    <v-btn @click="allData">All Data</v-btn>
-    
-    <v-btn @click="allDelete">Delete All Complete Data</v-btn>
-    </v-form>
-    <pre>
+    <br>
+    <v-row justify="center">
+        <v-col md="6">
+            <v-btn class="ma-2" color="success" @click="completeAllData">Select All Complete</v-btn>
+             <v-btn class="ma-2" color="error" @click="allDelete">Remove All Complete</v-btn>
+        </v-col>
+    </v-row>
+   <br>
+    <!-- <pre>
         {{computedFilter}}
         {{todos}}
-    </pre>
+    </pre> -->
    
-        <ol>
-            <li v-for="(todo,index) in  computedFilter" :key="index">
-                <v-checkbox value :checked="todo.complete"  v-on:change="completeTask(todo)"></v-checkbox>
+            
+            <div class="text-center" v-for="(todo,index) in  computedFilter" :key="index">
+                <input type="checkbox" value :checked="todo.complete"  v-on:change="completeTask(todo)" class="ma-2"/>
                 <span :class="{completed: todo.complete}">{{  todo.title }}</span>
-                
-                <v-btn @click="edit(todo,index)">Edit</v-btn>
-                <v-btn @click="remove(index)">Remove</v-btn>
-            </li>
-       </ol>     
+                <v-btn class="ma-2" color="primary" @click="edit(todo,index)">Edit</v-btn>
+                <v-btn class="ma-2" color="error" @click="remove(index)">Remove</v-btn>
+            </div>
+            
 </v-container>
   
 </template>
@@ -110,15 +112,13 @@ export default {
       },
       updateData(){
           this.isEditing = false
-          console.log(this.todo)
-          console.log(this.selectIndex)
           this.todos.splice(this.selectIndex,1,{title: this.todo,complete: false})
-        //   this.todo = ''
+          this.todo = ''
       },
       completeTask(data){
           data.complete = !data.complete
       },
-      allData(){
+        completeAllData(){
           this.todos.forEach(todo=>{
               todo.complete = true
           })
