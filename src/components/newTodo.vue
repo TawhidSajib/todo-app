@@ -194,11 +194,11 @@ export default {
       },
       allDelete(){
           this.todos = this.todos.filter(todo=> todo.complete === false)
-          this.snackbar = true
+          this.snackbar = true;
           this.setSnackbar('error','Succefully all removed')
       },
       setSnackbar(color,text){
-        this.snackbarcolor = color
+        this.snackbarcolor = color;
         this.snackbarText = text
       },
      
