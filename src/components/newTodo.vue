@@ -199,7 +199,7 @@ export default {
       },
       setSnackbar(color,text){
         this.snackbarcolor = color;
-        this.snackbarText = text
+        this.snackbarText = text;
       },
      
 
